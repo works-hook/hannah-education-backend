@@ -1,0 +1,39 @@
+
+### 강의 생성
+POST http://localhost:8080/lecture-teacher
+Content-Type: application/json
+
+{
+  "userId": 3,
+  "title": "title",
+  "content": "content",
+  "startDate": "2022-10-01",
+  "endDate": "2022-12-31",
+  "thumbnailImgUrl": "https://image-url.com",
+  "tags": [2, 4, 6, 7]
+}
+
+### 강의 수정
+PATCH http://localhost:8080/lecture-teacher/2
+Content-Type: application/json
+
+{
+  "title": "titleModify",
+  "content": "contentModify",
+  "startDate": "2022-01-01",
+  "endDate": "2022-10-01",
+  "thumbnailImgUrl": "https://image-url.com",
+  "tags": [3, 4, 5, 7]
+}
+
+### 강의 삭제
+DELETE http://localhost:8080/lecture-teacher/2
+
+### 강의 전체 조회
+GET http://localhost:8080/lecture-teacher/lecture/3
+
+### 강의 상세 조회
+GET http://localhost:8080/lecture-teacher/student/2
+
+
+

@@ -1,0 +1,29 @@
+### 수업 등록
+POST http://localhost:8080/class-teacher/2
+Content-Type: application/json
+
+{
+  "title": "title",
+  "content": "content",
+  "period": "2022-01-01 11:00:00",
+  "isAssignment": true,
+  "assignmentContent": "assignmentContent"
+}
+
+### 수업 수정
+PATCH http://localhost:8080/class-teacher/1
+Content-Type: application/json
+
+{
+  "title": "titleModify",
+  "content": "contentModify",
+  "period": "2022-01-01 11:30:00",
+  "isAssignment": true,
+  "assignmentContent": "assignmentContentModify"
+}
+
+### 수업 삭제
+DELETE http://localhost:8080/class-teacher/1
+
+### 수업 전체 조회
+GET http://localhost:8080/class-teacher/2

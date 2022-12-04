@@ -1,0 +1,18 @@
+
+### 가장 많이 수강한 강의
+GET http://localhost:8080/lecture-student/most-taken
+
+### 가장 많이 좋아요한 강의
+GET http://localhost:8080/lecture-student/most-like
+
+### 강의 리스트 조회
+GET http://localhost:8080/lecture-student
+
+### 강의 상세 조회
+GET http://localhost:8080/lecture-student/2
+
+### 수강 신청하기
+POST http://localhost:8080/lecture-student/take/4/4
+
+### 강의 좋아요 누르기
+POST http://localhost:8080/lecture-student/like/4/4

@@ -1,0 +1,6 @@
+### 태그 전체 조회
+GET http://localhost:8080/lecture/tags
+
+### 태그 랜덤 조회
+GET http://localhost:8080/lecture/tags-random
+

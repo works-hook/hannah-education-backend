@@ -1,0 +1,25 @@
+### 공지사항 조회
+GET http://localhost:8080/lecture-teacher/notice/2
+
+### 공지사항 등록
+POST http://localhost:8080/lecture-teacher/notice/2
+Content-Type: application/json
+
+{
+  "title": "noticeTitle",
+  "content": "noticeContent"
+}
+
+
+### 공지사항 수정
+PATCH http://localhost:8080/lecture-teacher/notice/1
+Content-Type: application/json
+
+{
+  "title": "noticeTitleModify",
+  "content": "noticeContentModify"
+}
+
+
+### 공지사항 삭제
+DELETE http://localhost:8080/lecture-teacher/notice/1

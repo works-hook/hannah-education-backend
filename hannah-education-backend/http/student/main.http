@@ -1,0 +1,5 @@
+### 메인 배너 조회
+GET http://localhost:8080/user-student/banner
+
+### 메인 강사님 조회
+GET http://localhost:8080/user-student/teacher
