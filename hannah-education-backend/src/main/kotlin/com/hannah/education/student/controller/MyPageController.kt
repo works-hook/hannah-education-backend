@@ -3,7 +3,7 @@ package com.hannah.education.student.controller
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.lectureservice.teacher.dto.response.TakingLectureResponse
 import com.hannah.education.student.dto.response.TagsByUserResponse
-import com.hannah.education.student.service.LectureMyPageService
+import com.hannah.education.student.service.MyPageService
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/lecture-student")
-class LectureMyPageController(
-    private val myPageService: LectureMyPageService
+class MyPageController(
+    private val myPageService: MyPageService
 ) {
 
     @GetMapping("/like/{userId}")

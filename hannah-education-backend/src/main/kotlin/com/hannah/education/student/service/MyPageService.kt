@@ -15,7 +15,7 @@ import com.hannah.education.util.exception.BusinessException
 import org.springframework.stereotype.Service
 
 @Service
-class LectureMyPageService(
+class MyPageService(
     private val noticeRepository: LectureNoticeRepository,
     private val takingLectureRepository: TakingLectureRepository,
     private val lectureTagRepository: LectureTagRepository,

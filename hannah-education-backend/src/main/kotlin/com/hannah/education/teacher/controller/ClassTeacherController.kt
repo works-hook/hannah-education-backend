@@ -3,15 +3,15 @@ package com.hannah.education.teacher.controller
 import com.hannah.education.teacher.dto.request.ClassCreateRequest
 import com.hannah.education.teacher.dto.request.ClassModifyRequest
 import com.hannah.education.teacher.dto.response.ClassResponse
-import com.hannah.education.teacher.service.TeacherClassService
+import com.hannah.education.teacher.service.ClassTeacherService
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/class-teacher")
-class TeacherClassController(
-    private val classService: TeacherClassService,
+class ClassTeacherController(
+    private val classService: ClassTeacherService,
 ) {
 
     @PostMapping("/{lectureId}")
