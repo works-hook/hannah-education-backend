@@ -1,4 +1,4 @@
-package com.hannah.education.student.service
+package com.hannah.education.student.service.user
 
 import com.hannah.education.domain.user.repository.UserRepository
 import com.hannah.education.student.dto.request.StudentModifyRequest

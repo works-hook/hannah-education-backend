@@ -1,8 +1,8 @@
-package com.hannah.education.teacher.controller
+package com.hannah.education.teacher.controller.notice
 
 import com.hannah.education.teacher.dto.request.NoticeRequest
 import com.hannah.education.teacher.dto.response.NoticeResponse
-import com.hannah.education.teacher.service.NoticeTeacherService
+import com.hannah.education.teacher.service.notice.NoticeTeacherService
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*

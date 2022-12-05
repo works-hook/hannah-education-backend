@@ -1,4 +1,4 @@
-package com.hannah.education.student.service
+package com.hannah.education.student.service.myPage
 
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.domain.lecture.dto.toLectureResponse

@@ -74,6 +74,17 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+tasks.bootBuildImage {
+    imageName = "coals0329" + "/${project.name}"
+    isPublish = true
+    docker {
+        publishRegistry {
+            username = "coals0329"
+            password = ""
+        }
+    }
+}
+
 // querydsl
 //sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
 //    kotlin.srcDir("$buildDir/generated/source/kapt/main")

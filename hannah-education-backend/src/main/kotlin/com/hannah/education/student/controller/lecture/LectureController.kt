@@ -1,8 +1,8 @@
-package com.hannah.education.student.controller
+package com.hannah.education.student.controller.lecture
 
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.student.dto.response.LectureDetailResponse
-import com.hannah.education.student.service.LectureService
+import com.hannah.education.student.service.lecture.LectureService
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*

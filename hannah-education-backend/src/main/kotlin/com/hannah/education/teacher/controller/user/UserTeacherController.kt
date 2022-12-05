@@ -1,6 +1,6 @@
-package com.hannah.education.teacher.controller
+package com.hannah.education.teacher.controller.user
 
-import com.hannah.education.teacher.service.UserTeacherService
+import com.hannah.education.teacher.service.user.UserTeacherService
 import com.hannah.education.teacher.dto.request.TeacherModifyRequest
 import com.hannah.education.teacher.dto.response.TeacherModifyResponse
 import com.hannah.education.teacher.dto.response.TeacherOneResponse

@@ -1,4 +1,4 @@
-package com.hannah.education.teacher.service
+package com.hannah.education.teacher.service.user
 
 import com.hannah.education.domain.user.repository.UserRepository
 import com.hannah.education.teacher.dto.request.TeacherModifyRequest

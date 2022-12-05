@@ -1,4 +1,4 @@
-package com.hannah.education.student.service
+package com.hannah.education.student.service.main
 
 import com.hannah.education.domain.banner.repository.BannerRepository
 import com.hannah.education.domain.user.repository.UserRepository

@@ -1,10 +1,10 @@
-package com.hannah.education.teacher.controller
+package com.hannah.education.teacher.controller.lecture
 
 import com.hannah.education.teacher.dto.request.LectureCreateRequest
 import com.hannah.education.teacher.dto.request.LectureModifyRequest
 import com.hannah.education.teacher.dto.response.LectureListResponse
 import com.hannah.education.teacher.dto.response.LectureOneResponse
-import com.hannah.education.teacher.service.LectureTeacherService
+import com.hannah.education.teacher.service.lecture.LectureTeacherService
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*

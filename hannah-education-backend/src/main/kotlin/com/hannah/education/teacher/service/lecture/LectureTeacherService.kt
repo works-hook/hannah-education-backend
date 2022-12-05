@@ -1,4 +1,4 @@
-package com.hannah.education.teacher.service
+package com.hannah.education.teacher.service.lecture
 
 import com.hannah.education.domain.lecture.repository.LectureRepository
 import com.hannah.education.domain.lectureTag.LectureTag

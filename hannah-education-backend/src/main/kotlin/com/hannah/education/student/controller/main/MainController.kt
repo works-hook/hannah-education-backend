@@ -1,6 +1,6 @@
-package com.hannah.education.student.controller
+package com.hannah.education.student.controller.main
 
-import com.hannah.education.student.service.MainService
+import com.hannah.education.student.service.main.MainService
 import com.hannah.education.student.dto.response.BannerResponse
 import com.hannah.education.student.dto.response.TeacherResponse
 import com.hannah.education.util.ApiResponse.Success
