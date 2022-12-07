@@ -40,8 +40,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.hibernate:hibernate-entitymanager")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
+
+    // logging
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
 
     // jwt
     implementation ("io.jsonwebtoken:jjwt-api:0.11.5")

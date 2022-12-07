@@ -1,9 +1,9 @@
 package com.hannah.education.config.jwt
 
-import io.jsonwebtoken.Claims
+import com.hannah.education.util.code.ErrorCode
+import com.hannah.education.util.exception.BusinessException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.security.Key
@@ -11,13 +11,12 @@ import java.util.*
 import javax.crypto.spec.SecretKeySpec
 import javax.xml.bind.DatatypeConverter
 
-@RequiredArgsConstructor
 @Component
 class JwtTokenProvider {
 
     @Value("\${JWT_TOKEN_STRING}")
     private val jwtTokenString: String? = null
-    private val signatureAlgorithm: SignatureAlgorithm = SignatureAlgorithm.ES256
+    private val signatureAlgorithm: SignatureAlgorithm = SignatureAlgorithm.HS256
 
     fun generator(claims: Map<String, Any?>): String {
         return Jwts.builder()
@@ -28,12 +27,18 @@ class JwtTokenProvider {
             .compact()
     }
 
-    fun claimsFromToken(token: String?): Claims {
-        return Jwts.parserBuilder()
-            .setSigningKey(DatatypeConverter.parseBase64Binary(jwtTokenString))
-            .build()
-            .parseClaimsJws(token)
-            .body
+    fun validateJwt(jwt: String): Boolean {
+        try {
+            val claims = Jwts.parserBuilder()
+                .setSigningKey(DatatypeConverter.parseBase64Binary(jwtTokenString))
+                .build()
+                .parseClaimsJws(jwt)
+                .body
+            println("userId : " + claims["userId"])
+        } catch (e: Exception) {
+            throw BusinessException(ErrorCode.JWT_ERROR)
+        }
+        return true
     }
 
     private fun createKey(): Key {

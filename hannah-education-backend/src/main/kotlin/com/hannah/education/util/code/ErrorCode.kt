@@ -4,6 +4,8 @@ enum class ErrorCode(
     val code: String,
     val message: String
 ) {
+    JWT_ERROR("30000", "잘못된 토큰입니다."),
+
     NOT_URI("40000", "잘못된 URI 요청입니다."),
     NOT_BODY("40001", "잘못된 Body 요청입니다."),
 

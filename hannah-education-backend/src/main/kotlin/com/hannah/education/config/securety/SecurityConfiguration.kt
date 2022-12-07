@@ -1,4 +1,4 @@
-package com.hannah.education.config
+package com.hannah.education.config.securety
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
