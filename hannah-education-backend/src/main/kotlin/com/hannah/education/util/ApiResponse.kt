@@ -4,14 +4,14 @@ import com.hannah.education.util.code.ErrorCode
 import com.hannah.education.util.code.SuccessCode
 
 sealed class ApiResponse<T>(
-    val data: T? = null,
+    open val data: T? = null,
     val code: String? = null,
     val message: String? = null
 ) {
 
-    class Success<T>(data: T?, success: SuccessCode) : ApiResponse<T>(data = data, code = success.code, message = success.message) {
+    data class Success<T>(override val data: T?, val success: SuccessCode) : ApiResponse<T>(data = data, code = success.code, message = success.message) {
         constructor(success: SuccessCode) : this(null, success)
     }
 
-    class Error<T>(error: ErrorCode) : ApiResponse<T>(code = error.code, message = error.message)
+    data class Error<T>(val error: ErrorCode) : ApiResponse<T>(code = error.code, message = error.message)
 }
