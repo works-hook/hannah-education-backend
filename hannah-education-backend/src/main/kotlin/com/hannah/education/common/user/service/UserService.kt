@@ -5,10 +5,14 @@ import com.hannah.education.common.user.dto.request.UserDuplicateRequest
 import com.hannah.education.common.user.dto.request.UserLoginRequest
 import com.hannah.education.common.user.dto.request.UserUpdatePasswordRequest
 import com.hannah.education.common.user.dto.response.UserCreateResponse
+import com.hannah.education.common.user.dto.response.UserLoginSuccessResponse
 import com.hannah.education.common.user.dto.response.toCreateResponseDto
+import com.hannah.education.common.user.dto.response.toLoginResponse
+import com.hannah.education.config.jwt.JwtTokenProvider
 import com.hannah.education.domain.user.repository.UserRepository
 import com.hannah.education.util.code.ErrorCode
 import com.hannah.education.util.exception.BusinessException
+import io.jsonwebtoken.Claims
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -17,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder,
+    private val jwtTokenProvider: JwtTokenProvider,
 ) {
 
     @Transactional
@@ -39,10 +44,13 @@ class UserService(
         findUser.delete()
     }
 
-    fun loginUser(request: UserLoginRequest) {
+    fun loginUser(request: UserLoginRequest): UserLoginSuccessResponse {
         val user = userRepository.findByAccount(request.account)
             ?: throw BusinessException(ErrorCode.NOT_MATCH_MEMBER)
         checkPassword(request.password, user.password)
+
+        val token = jwtTokenProvider.generator(getClaims(user.id))
+        return user.toLoginResponse(token)
     }
 
     @Transactional
@@ -56,6 +64,10 @@ class UserService(
     private fun checkPassword(requestPassword: String, originPassword: String) {
         val checkPassword = passwordEncoder.matches(requestPassword, originPassword)
         if (!checkPassword) throw BusinessException(ErrorCode.NOT_MATCH_PASSWORD)
+    }
+
+    private fun getClaims(userId: Long?): Map<String, Long?> {
+        return mapOf("userId" to userId)
     }
 
 }

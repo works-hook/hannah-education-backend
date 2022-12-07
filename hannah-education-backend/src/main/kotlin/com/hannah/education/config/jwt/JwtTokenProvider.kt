@@ -19,7 +19,7 @@ class JwtTokenProvider {
     private val jwtTokenString: String? = null
     private val signatureAlgorithm: SignatureAlgorithm = SignatureAlgorithm.ES256
 
-    fun generator(claims: HashMap<String, Any>): String {
+    fun generator(claims: Map<String, Any?>): String {
         return Jwts.builder()
             .setClaims(claims)
             .setIssuedAt(Date(System.currentTimeMillis()))
