@@ -17,5 +17,6 @@ WORKDIR /target
 COPY /build/libs/hannah-education-backend-0.0.1-SNAPSHOT.jar backend-api.jar
 
 EXPOSE 8080
+ENV	USE_PROFILE prod
 
-ENTRYPOINT ["java", "-jar", "/target/backend-api.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=${USE_PROFILE}", "-jar", "/target/backend-api.jar"]

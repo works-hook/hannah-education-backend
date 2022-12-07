@@ -12,7 +12,6 @@ import com.hannah.education.config.jwt.JwtTokenProvider
 import com.hannah.education.domain.user.repository.UserRepository
 import com.hannah.education.util.code.ErrorCode
 import com.hannah.education.util.exception.BusinessException
-import io.jsonwebtoken.Claims
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
