@@ -1,5 +1,6 @@
 package com.hannah.education.teacher.controller.lecture
 
+import com.hannah.education.config.resolver.UserId
 import com.hannah.education.teacher.dto.request.LectureCreateRequest
 import com.hannah.education.teacher.dto.request.LectureModifyRequest
 import com.hannah.education.teacher.dto.response.LectureListResponse
@@ -36,8 +37,8 @@ class LectureTeacherController(
         return Success(SuccessCode.LECTURE_DELETE)
     }
 
-    @GetMapping("/lecture/{userId}")
-    fun findAllLecture(@PathVariable userId: Long): Success<List<LectureListResponse>> {
+    @GetMapping("/lecture")
+    fun findAllLecture(@UserId userId: Long): Success<List<LectureListResponse>> {
         val result = teacherService.findAllLecture(userId)
         return Success(result, SuccessCode.ALL_LECTURE)
     }

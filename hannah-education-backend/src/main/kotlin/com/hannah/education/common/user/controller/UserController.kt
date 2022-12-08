@@ -7,6 +7,7 @@ import com.hannah.education.common.user.dto.request.UserLoginRequest
 import com.hannah.education.common.user.dto.request.UserUpdatePasswordRequest
 import com.hannah.education.common.user.dto.response.UserCreateResponse
 import com.hannah.education.common.user.dto.response.UserLoginSuccessResponse
+import com.hannah.education.config.interceptor.NoToken
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*
@@ -35,6 +36,7 @@ class UserController(
         return Success(SuccessCode.SECESSION)
     }
 
+    @NoToken
     @PostMapping("/login")
     fun loginUser(@RequestBody request: UserLoginRequest): Success<UserLoginSuccessResponse> {
         val result = userService.loginUser(request)

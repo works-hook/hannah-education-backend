@@ -2,6 +2,7 @@ package com.hannah.education.config.jwt
 
 import com.hannah.education.util.code.ErrorCode
 import com.hannah.education.util.exception.BusinessException
+import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.beans.factory.annotation.Value
@@ -27,18 +28,16 @@ class JwtTokenProvider {
             .compact()
     }
 
-    fun validateJwt(jwt: String): Boolean {
+    fun validateJwt(jwt: String): Claims {
         try {
-            val claims = Jwts.parserBuilder()
+            return Jwts.parserBuilder()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(jwtTokenString))
                 .build()
                 .parseClaimsJws(jwt)
                 .body
-            println("userId : " + claims["userId"])
         } catch (e: Exception) {
             throw BusinessException(ErrorCode.JWT_ERROR)
         }
-        return true
     }
 
     private fun createKey(): Key {
