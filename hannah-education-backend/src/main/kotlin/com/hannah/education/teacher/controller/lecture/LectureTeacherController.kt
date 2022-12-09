@@ -37,13 +37,13 @@ class LectureTeacherController(
         return Success(SuccessCode.LECTURE_DELETE)
     }
 
-    @GetMapping("/lecture")
+    @GetMapping("")
     fun findAllLecture(@UserId userId: Long): Success<List<LectureListResponse>> {
         val result = teacherService.findAllLecture(userId)
         return Success(result, SuccessCode.ALL_LECTURE)
     }
 
-    @GetMapping("/student/{lectureId}")
+    @GetMapping("/{lectureId}")
     fun findOneLecture(@PathVariable lectureId: Long): Success<LectureOneResponse> {
         val result = teacherService.findOneLecture(lectureId)
         return Success(result, SuccessCode.ONE_LECTURE)
