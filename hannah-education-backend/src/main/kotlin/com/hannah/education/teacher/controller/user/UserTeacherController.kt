@@ -1,5 +1,6 @@
 package com.hannah.education.teacher.controller.user
 
+import com.hannah.education.config.resolver.UserId
 import com.hannah.education.teacher.service.user.UserTeacherService
 import com.hannah.education.teacher.dto.request.TeacherModifyRequest
 import com.hannah.education.teacher.dto.response.TeacherModifyResponse
@@ -14,17 +15,17 @@ class UserTeacherController(
     private val userTeacherService: UserTeacherService,
 ) {
 
-    @PatchMapping("/{id}")
+    @PatchMapping("")
     fun modifyTeacher(
-        @PathVariable id: Long,
+        @UserId id: Long,
         @RequestBody request: TeacherModifyRequest,
     ): Success<TeacherModifyResponse> {
         val result = userTeacherService.modifyTeacher(id, request)
         return Success(result, SuccessCode.USER_MODIFY)
     }
 
-    @GetMapping("/{id}")
-    fun findOneTeacher(@PathVariable id: Long): Success<TeacherOneResponse> {
+    @GetMapping("")
+    fun findOneTeacher(@UserId id: Long): Success<TeacherOneResponse> {
         val result = userTeacherService.findOneTeacher(id)
         return Success(result, SuccessCode.USER_ONE)
     }

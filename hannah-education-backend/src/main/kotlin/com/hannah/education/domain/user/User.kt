@@ -17,6 +17,7 @@ class User(
     var email: String,
     var phoneNumber: String,
     var oneLineIntroduction: String? = null,
+    @Column(columnDefinition="TEXT")
     var introduction: String? = null,
     var brith: LocalDate? = null,
     var imageUrl: String? = null,
