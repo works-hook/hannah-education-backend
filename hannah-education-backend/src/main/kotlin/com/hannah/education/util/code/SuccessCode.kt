@@ -45,4 +45,5 @@ enum class SuccessCode(
     CLASS_DELETE("10003", "수업이 삭제되었습니다."),
 
     ALL_CLASS("10010", "수업 리스트입니다."),
+    ONE_CLASS("10011", "수업 정보입니다.")
 }

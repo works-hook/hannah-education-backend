@@ -32,7 +32,13 @@ class ClassTeacherController(
         return Success(SuccessCode.CLASS_DELETE)
     }
 
-    @GetMapping("/{lectureId}")
+    @GetMapping("/{classId}")
+    fun findOneClass(@PathVariable classId: Long): Success<ClassResponse> {
+        val result = classService.findOneClass(classId)
+        return Success(result, SuccessCode.ONE_CLASS)
+    }
+
+    @GetMapping("/lecture/{lectureId}")
     fun findAllClass(@PathVariable lectureId: Long): Success<List<ClassResponse>> {
         val result = classService.findAllClass(lectureId)
         return Success(result, SuccessCode.ALL_CLASS)

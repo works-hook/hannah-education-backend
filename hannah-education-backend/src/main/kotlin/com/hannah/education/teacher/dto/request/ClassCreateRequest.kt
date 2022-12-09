@@ -1,15 +1,15 @@
 package com.hannah.education.teacher.dto.request
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import com.hannah.education.domain.lecture.Lecture
 import com.hannah.education.domain.lectureClass.LectureClass
-import java.time.LocalDateTime
+import java.time.LocalDate
+import java.time.LocalTime
 
 data class ClassCreateRequest(
     val title: String,
     val content: String,
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    val period: LocalDateTime,
+    val startDate: LocalDate,
+    val startTime: LocalTime,
     val isAssignment: Boolean,
     val assignmentContent: String,
 ) {
@@ -19,7 +19,8 @@ data class ClassCreateRequest(
             lecture = lecture,
             title = this.title,
             content = this.content,
-            period = this.period,
+            startDate = this.startDate,
+            startTime = this.startTime,
             isAssignment = this.isAssignment,
             assignmentContent = this.assignmentContent,
         )

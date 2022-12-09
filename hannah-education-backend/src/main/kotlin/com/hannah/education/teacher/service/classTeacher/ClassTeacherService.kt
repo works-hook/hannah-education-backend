@@ -39,6 +39,12 @@ class ClassTeacherService(
         findClass.delete()
     }
 
+    fun findOneClass(classId: Long): ClassResponse {
+        val findClass = (classRepository.findClassById(classId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_CLASS))
+        return findClass.toResponse()
+    }
+
     fun findAllClass(lectureId: Long): List<ClassResponse> {
         val findLecture = lectureRepository.findLectureId(lectureId)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_LECTURE)
