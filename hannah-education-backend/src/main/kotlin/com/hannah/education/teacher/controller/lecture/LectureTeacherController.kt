@@ -17,8 +17,8 @@ class LectureTeacherController(
 ) {
 
     @PostMapping("")
-    fun createLecture(@RequestBody request: LectureCreateRequest): Success<String> {
-        teacherService.createLecture(request)
+    fun createLecture(@UserId userId: Long, @RequestBody request: LectureCreateRequest): Success<String> {
+        teacherService.createLecture(userId, request)
         return Success(SuccessCode.LECTURE_CREATE)
     }
 

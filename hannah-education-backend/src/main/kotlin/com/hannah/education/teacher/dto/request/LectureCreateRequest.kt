@@ -5,7 +5,6 @@ import com.hannah.education.domain.user.User
 import java.time.LocalDate
 
 data class LectureCreateRequest(
-    val userId: Long,
     val title: String,
     val content: String,
     val startDate: String,

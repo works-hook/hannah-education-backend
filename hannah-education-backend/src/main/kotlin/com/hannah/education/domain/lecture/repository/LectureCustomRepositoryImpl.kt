@@ -20,7 +20,9 @@ class LectureCustomRepositoryImpl(
             .where(
                 eqUserId(teacherId),
                 notDelete()
-            ).fetch()
+            )
+            .orderBy(lecture.id.desc())
+            .fetch()
     }
 
     override fun findLectureId(lectureId: Long): Lecture? {

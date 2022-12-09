@@ -25,8 +25,8 @@ class LectureTeacherService(
 ) {
 
     @Transactional
-    fun createLecture(request: LectureCreateRequest) {
-        val findUser = userRepository.findUserById(request.userId)
+    fun createLecture(userId: Long, request: LectureCreateRequest) {
+        val findUser = userRepository.findUserById(userId)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
         val lecture = request.toEntity(findUser)
 

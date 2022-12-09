@@ -22,7 +22,6 @@ class TokenComponent(
         val token = request.getHeader("auth") ?: throw BusinessException(ErrorCode.JWT_ERROR)
         val claims: Claims = jwtTokenProvider.validateJwt(token)
         logger.info("-----------token----------- > {}", token)
-        logger.info("-----------role------------ > {} ", claims["role"].toString())
         logger.info("-----------userId---------- > {}", claims["userId"])
         return userChecked(request, claims)
     }

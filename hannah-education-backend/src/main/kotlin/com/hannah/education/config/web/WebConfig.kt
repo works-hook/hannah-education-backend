@@ -20,7 +20,8 @@ class WebConfig(
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-            .allowedOrigins("*")
+            .allowedOrigins("http://localhost:3000")
+            .allowCredentials(true)
             .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH")
     }
 
@@ -28,12 +29,12 @@ class WebConfig(
         registry.addInterceptor(tokenInterceptor)
     }
 
-    override fun configureContentNegotiation(configurer: ContentNegotiationConfigurer) {
-        configurer.defaultContentType(MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8))
-    }
-
     override fun addArgumentResolvers(resolvers: MutableList<HandlerMethodArgumentResolver?>) {
         resolvers.add(userArgumentResolver)
+    }
+
+    override fun configureContentNegotiation(configurer: ContentNegotiationConfigurer) {
+        configurer.defaultContentType(MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8))
     }
 
 }
