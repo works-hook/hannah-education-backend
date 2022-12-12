@@ -20,4 +20,7 @@ enum class ErrorCode(
 
     NOT_EXIST_CLASS("50003", "존재하지 않은 수업입니다."),
 
+    NOT_IMAGE_FORMAT("50500", "지원하지 않은 파일 형식입니다."),
+    IMAGE_UPLOAD_ERROR("50501", "이미지를 업로드하던 중 에러가 발생했습니다."),
+    IMAGE_REMOVE_ERROR("50502", "이미지를 삭제하던 중 에러가 발생했습니다."),
 }
