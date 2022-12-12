@@ -39,11 +39,12 @@ enum class SuccessCode(
     NOTICE_CREATE("20002", "공지사항이 등록되었습니다."),
     NOTICE_MODIFY("20003", "공지사항이 수정되었습니다."),
     NOTICE_DELETE("20004", "공지사항이 삭제되었습니다."),
+    ONE_NOTICE("20005", "공지사항 상세입니다."),
 
     CLASS_CREATE("10001", "수업이 등록되었습니다."),
     CLASS_MODIFY("10002", "수업이 수정되었습니다."),
     CLASS_DELETE("10003", "수업이 삭제되었습니다."),
 
     ALL_CLASS("10010", "수업 리스트입니다."),
-    ONE_CLASS("10011", "수업 정보입니다.")
+    ONE_CLASS("10011", "수업 정보입니다."),
 }

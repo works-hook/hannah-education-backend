@@ -10,11 +10,16 @@ import javax.persistence.*
 class Lecture(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
+
     var title: String,
+
+    @Column(columnDefinition="LONGTEXT")
     var content: String,
-    var startDate: LocalDate,
-    var endDate: LocalDate,
+
     var thumbnailImgUrl: String,
+
+    var isShow: Boolean,
+
     @ManyToOne(fetch = FetchType.LAZY)
     val user: User,
 ): BaseEntity() {
@@ -22,8 +27,7 @@ class Lecture(
     fun update(request: LectureModifyRequest) {
         this.title = request.title
         this.content = request.content
-        this.startDate = LocalDate.parse(request.startDate)
-        this.endDate = LocalDate.parse(request.endDate)
         this.thumbnailImgUrl = request.thumbnailImgUrl
+        this.isShow = request.isShow
     }
 }

@@ -1,7 +1,7 @@
 package com.hannah.education.student.controller.myPage
 
 import com.hannah.education.domain.lecture.dto.LectureResponse
-import com.hannah.education.lectureservice.teacher.dto.response.TakingLectureResponse
+import com.hannah.education.teacher.dto.response.TakingLectureResponse
 import com.hannah.education.student.dto.response.TagsByUserResponse
 import com.hannah.education.student.service.myPage.MyPageService
 import com.hannah.education.util.ApiResponse.Success

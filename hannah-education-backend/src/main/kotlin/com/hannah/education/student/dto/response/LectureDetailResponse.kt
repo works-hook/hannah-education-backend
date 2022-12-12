@@ -10,8 +10,6 @@ data class LectureDetailResponse(
     val lectureId: Long? = null,
     val title: String,
     val content: String,
-    val startDate: LocalDate,
-    val endDate: LocalDate,
     val thumbnailImgUrl: String,
     val tags: List<LectureTagResponse>,
     val likeCount: Long,
@@ -21,8 +19,6 @@ fun Lecture.toLectureDetailResponse(lectureTags: List<LectureTag>, likeCount: Lo
     lectureId = this.id,
     title = this.title,
     content = this.content,
-    startDate = this.startDate,
-    endDate = this.endDate,
     thumbnailImgUrl = this.thumbnailImgUrl,
     tags = lectureTags.map { it.toResponse() },
     likeCount = likeCount ?: 0

@@ -19,22 +19,11 @@ class LectureClass(
 
     var title: String,
     var content: String,
-    var startDate: LocalDate,
-    var startTime: LocalTime,
-
-    @Convert(converter = BooleanToYNConverter::class)
-    var isAssignment: Boolean,
-
-    var assignmentContent: String? = null,
 ): BaseEntity() {
 
     fun update(request: ClassModifyRequest) {
         this.title = request.title
         this.content = request.content
-        this.startDate = request.startDate
-        this.startTime = request.startTime
-        this.isAssignment = request.isAssignment
-        this.assignmentContent = request.assignmentContent
     }
 
 }

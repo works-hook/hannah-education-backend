@@ -7,8 +7,8 @@ import com.hannah.education.domain.lectureNotice.repositoroy.LectureNoticeReposi
 import com.hannah.education.domain.lectureTag.repository.LectureTagRepository
 import com.hannah.education.domain.takingLecture.repository.TakingLectureRepository
 import com.hannah.education.domain.user.repository.UserRepository
-import com.hannah.education.lectureservice.teacher.dto.response.TakingLectureResponse
-import com.hannah.education.lectureservice.teacher.dto.response.toResponse
+import com.hannah.education.teacher.dto.response.TakingLectureResponse
+import com.hannah.education.teacher.dto.response.toResponse
 import com.hannah.education.student.dto.response.TagsByUserResponse
 import com.hannah.education.util.code.ErrorCode
 import com.hannah.education.util.exception.BusinessException

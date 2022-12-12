@@ -1,5 +1,7 @@
 package com.hannah.education.student.controller.lecture
 
+import com.hannah.education.config.interceptor.NoToken
+import com.hannah.education.config.resolver.UserId
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.student.dto.response.LectureDetailResponse
 import com.hannah.education.student.service.lecture.LectureService
@@ -13,38 +15,42 @@ class LectureController(
     private val studentService: LectureService,
 ) {
 
+    @NoToken
     @GetMapping("/most-taken")
     fun mostTakenLectures(): Success<List<LectureResponse>> {
         val result = studentService.mostTakenLectures()
         return Success(result, SuccessCode.ALL_LECTURE)
     }
 
+    @NoToken
     @GetMapping("/most-like")
     fun mostLikeLectures(): Success<List<LectureResponse>> {
         val result = studentService.mostLikeLectures()
         return Success(result, SuccessCode.ALL_LECTURE)
     }
 
+    @NoToken
     @GetMapping("")
     fun findAllLectures(): Success<List<LectureResponse>> {
         val result = studentService.findAllLectures()
         return Success(result, SuccessCode.ALL_LECTURE)
     }
 
+    @NoToken
     @GetMapping("/{lectureId}")
     fun findOneLecture(@PathVariable lectureId: Long): Success<LectureDetailResponse> {
         val result = studentService.findOneLecture(lectureId)
         return Success(result, SuccessCode.ONE_LECTURE)
     }
 
-    @PostMapping("/take/{lectureId}/{userId}")
-    fun takeLecture(@PathVariable lectureId: Long, @PathVariable userId: Long): Success<String> {
+    @PostMapping("/take/{lectureId}")
+    fun takeLecture(@PathVariable lectureId: Long, @UserId userId: Long): Success<String> {
         studentService.takeLecture(lectureId, userId)
         return Success(SuccessCode.TAKING_LECTURE)
     }
 
-    @PostMapping("/like/{lectureId}/{userId}")
-    fun likeLecture(@PathVariable lectureId: Long, @PathVariable userId: Long): Success<String> {
+    @PostMapping("/like/{lectureId}")
+    fun likeLecture(@PathVariable lectureId: Long, @UserId userId: Long): Success<String> {
         studentService.likeLecture(lectureId, userId)
         return Success(SuccessCode.LIKE_LECTURE)
     }

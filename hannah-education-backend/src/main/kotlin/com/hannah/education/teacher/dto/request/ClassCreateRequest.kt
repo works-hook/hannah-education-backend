@@ -8,10 +8,6 @@ import java.time.LocalTime
 data class ClassCreateRequest(
     val title: String,
     val content: String,
-    val startDate: LocalDate,
-    val startTime: LocalTime,
-    val isAssignment: Boolean,
-    val assignmentContent: String,
 ) {
 
     fun toClassEntity(lecture: Lecture): LectureClass {
@@ -19,10 +15,6 @@ data class ClassCreateRequest(
             lecture = lecture,
             title = this.title,
             content = this.content,
-            startDate = this.startDate,
-            startTime = this.startTime,
-            isAssignment = this.isAssignment,
-            assignmentContent = this.assignmentContent,
         )
     }
 

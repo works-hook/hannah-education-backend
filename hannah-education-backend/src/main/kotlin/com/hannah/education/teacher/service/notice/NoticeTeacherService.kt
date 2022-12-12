@@ -25,6 +25,12 @@ class NoticeTeacherService(
             .toList()
     }
 
+    fun findOneNotice(noticeId: Long): NoticeResponse {
+        val findNotice = noticeRepository.findNoticeById(noticeId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_NOTICE)
+        return findNotice.toResponse()
+    }
+
     @Transactional
     fun createNotice(lectureId: Long, request: NoticeRequest) {
         val findLecture = lectureRepository.findLectureId(lectureId)

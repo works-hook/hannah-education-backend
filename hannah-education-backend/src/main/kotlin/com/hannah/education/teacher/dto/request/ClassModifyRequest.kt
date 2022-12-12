@@ -6,8 +6,4 @@ import java.time.LocalTime
 data class ClassModifyRequest(
     val title: String,
     val content: String,
-    val startDate: LocalDate,
-    val startTime: LocalTime,
-    val isAssignment: Boolean,
-    val assignmentContent: String?,
 )
