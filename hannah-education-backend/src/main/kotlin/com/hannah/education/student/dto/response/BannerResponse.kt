@@ -3,15 +3,17 @@ package com.hannah.education.student.dto.response
 import com.hannah.education.domain.banner.Banner
 
 data class BannerResponse(
-    val title: String,
-    val content: String,
+    val bannerId: Long?,
+    val altText: String,
+    val caption: String,
     val backgroundColor: String,
     val imageUrl: String,
 )
 
 fun Banner.toResponse(): BannerResponse = BannerResponse(
-    title = this.title,
-    content = this.content,
+    bannerId = this.id,
+    altText = this.altText,
+    caption = this.caption,
     backgroundColor = this.backgroundColor,
     imageUrl = this.imageUrl
 )

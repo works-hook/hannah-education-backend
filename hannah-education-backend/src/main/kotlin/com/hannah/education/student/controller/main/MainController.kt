@@ -1,5 +1,6 @@
 package com.hannah.education.student.controller.main
 
+import com.hannah.education.config.interceptor.NoToken
 import com.hannah.education.student.service.main.MainService
 import com.hannah.education.student.dto.response.BannerResponse
 import com.hannah.education.student.dto.response.TeacherResponse
@@ -15,12 +16,14 @@ class MainController(
     private val mainService: MainService,
 ) {
 
+    @NoToken
     @GetMapping("/banner")
     fun findMainBanner(): Success<List<BannerResponse>> {
         val result = mainService.findAllBanner()
         return Success(result, SuccessCode.BANNER_LIST)
     }
 
+    @NoToken
     @GetMapping("/teacher")
     fun findMainTeacher(): Success<List<TeacherResponse>> {
         val result = mainService.findAllTeacher()
