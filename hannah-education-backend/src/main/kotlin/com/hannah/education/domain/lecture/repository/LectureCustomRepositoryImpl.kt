@@ -5,6 +5,7 @@ import com.hannah.education.domain.lecture.QLecture.lecture
 import com.hannah.education.domain.lectureLike.QLectureLike.lectureLike
 import com.hannah.education.domain.takingLecture.QTakingLecture.takingLecture
 import com.hannah.education.domain.user.QUser.user
+import com.hannah.education.domain.user.User
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
@@ -69,6 +70,17 @@ class LectureCustomRepositoryImpl(
             )
             .orderBy(lecture.createdDate.desc())
             .fetch()
+    }
+
+    override fun findCountByTeacher(user: User): Long? {
+        return queryFactory
+            .select(lecture.count())
+            .from(lecture)
+            .where(
+                eqUserId(user.id),
+                notDelete()
+            )
+            .fetchOne()
     }
 
     private fun eqId(id: Long): BooleanExpression {

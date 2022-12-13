@@ -1,5 +1,6 @@
 package com.hannah.education.domain.takingLecture.repository
 
+import com.hannah.education.domain.lecture.Lecture
 import com.hannah.education.domain.lectureTag.QLectureTag.lectureTag
 import com.hannah.education.domain.tag.QTag.tag
 import com.hannah.education.domain.takingLecture.QTakingLecture.takingLecture
@@ -44,8 +45,22 @@ class TakingLectureCustomRepositoryImpl(
             .fetch()
     }
 
+    override fun findCountByLecture(lecture: Lecture): Long? {
+        return queryFactory
+            .select(takingLecture.count())
+            .from(takingLecture)
+            .where(
+                eqLecture(lecture),
+                notDelete()
+            ).fetchOne()
+    }
+
     private fun eqUser(user: User): BooleanExpression {
         return takingLecture.user.eq(user)
+    }
+
+    private fun eqLecture(lecture: Lecture): BooleanExpression {
+        return takingLecture.lecture.eq(lecture)
     }
 
     private fun onTag(): BooleanExpression {

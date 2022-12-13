@@ -13,6 +13,7 @@ data class LectureDetailResponse(
     val thumbnailImgUrl: String,
     val tags: List<LectureTagResponse>,
     val likeCount: Long,
+    val teacherId: Long?,
 )
 
 fun Lecture.toLectureDetailResponse(lectureTags: List<LectureTag>, likeCount: Long?) = LectureDetailResponse(
@@ -21,5 +22,6 @@ fun Lecture.toLectureDetailResponse(lectureTags: List<LectureTag>, likeCount: Lo
     content = this.content,
     thumbnailImgUrl = this.thumbnailImgUrl,
     tags = lectureTags.map { it.toResponse() },
-    likeCount = likeCount ?: 0
+    likeCount = likeCount ?: 0,
+    teacherId = this.user.id
 )

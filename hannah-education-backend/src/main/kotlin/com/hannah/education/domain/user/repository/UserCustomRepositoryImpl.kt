@@ -49,6 +49,17 @@ class UserCustomRepositoryImpl(
             .fetch()
     }
 
+    override fun findTeacherByLectureId(lectureId: Long): User? {
+        return queryFactory
+            .selectFrom(user)
+            .where(
+                eqId(lectureId),
+                isTeacher(),
+                notDelete()
+            )
+            .fetchOne()
+    }
+
     private fun eqId(id: Long?): BooleanExpression {
         return user.id.eq(id)
     }

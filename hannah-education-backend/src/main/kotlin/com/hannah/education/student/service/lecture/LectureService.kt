@@ -3,14 +3,14 @@ package com.hannah.education.student.service.lecture
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.domain.lecture.dto.toLectureResponse
 import com.hannah.education.domain.lecture.repository.LectureRepository
+import com.hannah.education.domain.lectureClass.repository.LectureClassRepository
 import com.hannah.education.domain.lectureLike.LectureLike
 import com.hannah.education.domain.lectureLike.repository.LectureLikeRepository
 import com.hannah.education.domain.lectureTag.repository.LectureTagRepository
 import com.hannah.education.domain.takingLecture.TakingLecture
 import com.hannah.education.domain.takingLecture.repository.TakingLectureRepository
 import com.hannah.education.domain.user.repository.UserRepository
-import com.hannah.education.student.dto.response.LectureDetailResponse
-import com.hannah.education.student.dto.response.toLectureDetailResponse
+import com.hannah.education.student.dto.response.*
 import com.hannah.education.util.code.ErrorCode
 import com.hannah.education.util.exception.BusinessException
 import org.springframework.stereotype.Service
@@ -18,10 +18,11 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LectureService(
+    private val userRepository: UserRepository,
     private val lectureRepository: LectureRepository,
     private val lectureTagRepository: LectureTagRepository,
     private val lectureLikeRepository: LectureLikeRepository,
-    private val userRepository: UserRepository,
+    private val lectureClassRepository: LectureClassRepository,
     private val takingLectureRepository: TakingLectureRepository,
 ) {
 
@@ -55,6 +56,14 @@ class LectureService(
         val findLectureTags = lectureTagRepository.findTagByLecture(findLecture)
         val findLikeCount = lectureLikeRepository.findCountByLecture(findLecture)
         return findLecture.toLectureDetailResponse(findLectureTags, findLikeCount)
+    }
+
+    fun findTeacherByLectureId(lectureId: Long): TeacherDetailResponse {
+        val findLecture = lectureRepository.findLectureId(lectureId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_LECTURE)
+        val lectureCount = lectureRepository.findCountByTeacher(findLecture.user) ?: 0L
+        val studentCount = takingLectureRepository.findCountByLecture(findLecture) ?: 0L
+        return findLecture.user.toTeacherDetailResponse(lectureCount, studentCount)
     }
 
     @Transactional

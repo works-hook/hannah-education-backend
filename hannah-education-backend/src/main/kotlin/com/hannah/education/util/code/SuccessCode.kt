@@ -48,6 +48,8 @@ enum class SuccessCode(
     ALL_CLASS("10010", "수업 리스트입니다."),
     ONE_CLASS("10011", "수업 정보입니다."),
 
+    ONE_TEACHER("10110", "강사 상세입니다."),
+
     SUCCESS_SAVE_IMAGE("10201", "이미지 저장이 완료되었습니다."),
     SUCCESS_DELETE_IMAGE("10202", "이미지 삭제가 완료되었습니다."),
 }

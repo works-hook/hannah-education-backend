@@ -12,4 +12,6 @@ interface UserCustomRepository {
 
     fun findTeachers(): List<User>
 
+    fun findTeacherByLectureId(lectureId: Long): User?
+
 }

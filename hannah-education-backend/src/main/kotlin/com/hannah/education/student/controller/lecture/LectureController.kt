@@ -4,6 +4,7 @@ import com.hannah.education.config.interceptor.NoToken
 import com.hannah.education.config.resolver.UserId
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.student.dto.response.LectureDetailResponse
+import com.hannah.education.student.dto.response.TeacherDetailResponse
 import com.hannah.education.student.service.lecture.LectureService
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
@@ -41,6 +42,13 @@ class LectureController(
     fun findOneLecture(@PathVariable lectureId: Long): Success<LectureDetailResponse> {
         val result = studentService.findOneLecture(lectureId)
         return Success(result, SuccessCode.ONE_LECTURE)
+    }
+
+    @NoToken
+    @GetMapping("/teacher/{lectureId}")
+    fun findTeacherById(@PathVariable lectureId: Long): Success<TeacherDetailResponse> {
+        val result = studentService.findTeacherByLectureId(lectureId)
+        return Success(result, SuccessCode.ONE_TEACHER);
     }
 
     @PostMapping("/take/{lectureId}")
