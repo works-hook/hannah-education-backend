@@ -22,7 +22,6 @@ class LectureService(
     private val lectureRepository: LectureRepository,
     private val lectureTagRepository: LectureTagRepository,
     private val lectureLikeRepository: LectureLikeRepository,
-    private val lectureClassRepository: LectureClassRepository,
     private val takingLectureRepository: TakingLectureRepository,
 ) {
 
@@ -76,6 +75,13 @@ class LectureService(
         takingLectureRepository.save(save)
     }
 
+    fun checkLikedLecture(userId: Long, lectureId: Long): Boolean {
+        val findUser = userRepository.findUserById(userId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
+        return lectureLikeRepository.checkLikedLectureByUser(findUser, lectureId)
+    }
+
+
     @Transactional
     fun likeLecture(lectureId: Long, userId: Long) {
         val findLecture = lectureRepository.findLectureId(lectureId)
@@ -84,5 +90,16 @@ class LectureService(
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
         val save = LectureLike(lecture = findLecture, user = findUser)
         lectureLikeRepository.save(save)
+    }
+
+    @Transactional
+    fun cancelLikeLecture(lectureId: Long, userId: Long) {
+        val findUser = userRepository.findUserById(userId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
+        val findLecture = lectureRepository.findLectureId(lectureId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_LECTURE)
+        val findLike = lectureLikeRepository.findLikeByAll(findUser, findLecture)
+            ?: throw BusinessException(ErrorCode.SERVER_ERROR)
+        findLike.delete()
     }
 }

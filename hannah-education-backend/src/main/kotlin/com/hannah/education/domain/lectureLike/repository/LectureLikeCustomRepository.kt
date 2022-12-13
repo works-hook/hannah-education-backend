@@ -10,4 +10,8 @@ interface LectureLikeCustomRepository {
 
     fun findLectureByUser(findUser: User): List<LectureLike>
 
+    fun checkLikedLectureByUser(user: User, lectureId: Long): Boolean
+
+    fun findLikeByAll(user: User, lecture: Lecture): LectureLike?
+
 }

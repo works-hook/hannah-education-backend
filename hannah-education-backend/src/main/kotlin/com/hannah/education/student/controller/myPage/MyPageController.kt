@@ -1,5 +1,6 @@
 package com.hannah.education.student.controller.myPage
 
+import com.hannah.education.config.resolver.UserId
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.teacher.dto.response.TakingLectureResponse
 import com.hannah.education.student.dto.response.TagsByUserResponse
@@ -17,8 +18,8 @@ class MyPageController(
     private val myPageService: MyPageService
 ) {
 
-    @GetMapping("/like/{userId}")
-    fun findLectureLikeByUser(@PathVariable userId: Long): Success<List<LectureResponse>> {
+    @GetMapping("/like")
+    fun findLectureLikeByUser(@UserId userId: Long): Success<List<LectureResponse>> {
         val result = myPageService.findLectureByLiked(userId)
         return Success(result, SuccessCode.LIKE_LECTURE_LIST)
     }
@@ -29,8 +30,8 @@ class MyPageController(
         return Success(result, SuccessCode.TAKING_LECTURE_TAG)
     }
 
-    @GetMapping("/taking/{userId}")
-    fun findTakingLectures(@PathVariable userId: Long): Success<List<TakingLectureResponse>> {
+    @GetMapping("/taking")
+    fun findTakingLectures(@UserId userId: Long): Success<List<TakingLectureResponse>> {
         val result = myPageService.findTakingLecture(userId)
         return Success(result, SuccessCode.TAKING_LECTURE_LIST)
     }

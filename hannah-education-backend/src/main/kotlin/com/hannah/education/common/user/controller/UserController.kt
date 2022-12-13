@@ -8,6 +8,7 @@ import com.hannah.education.common.user.dto.request.UserUpdatePasswordRequest
 import com.hannah.education.common.user.dto.response.UserCreateResponse
 import com.hannah.education.common.user.dto.response.UserLoginSuccessResponse
 import com.hannah.education.config.interceptor.NoToken
+import com.hannah.education.config.resolver.UserId
 import com.hannah.education.util.ApiResponse.Success
 import com.hannah.education.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*
@@ -30,7 +31,7 @@ class UserController(
         return Success(SuccessCode.NOT_DUPLICATE_ACCOUNT)
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id: Long): Success<String> {
         userService.deleteUser(id)
         return Success(SuccessCode.SECESSION)
@@ -43,9 +44,10 @@ class UserController(
         return Success(result, SuccessCode.LOGIN)
     }
 
-    @PostMapping("/{id}")
-    fun updatePassword(@PathVariable id: Long, @RequestBody request: UserUpdatePasswordRequest) {
+    @PostMapping("/password")
+    fun updatePassword(@UserId id: Long, @RequestBody request: UserUpdatePasswordRequest): Success<String> {
         userService.updatePassword(id, request)
+        return Success(SuccessCode.UPDATE_PASSWORD)
     }
 
 }

@@ -57,10 +57,22 @@ class LectureController(
         return Success(SuccessCode.TAKING_LECTURE)
     }
 
+    @GetMapping("/like/{lectureId}")
+    fun checkLikedLecture(@UserId id: Long, @PathVariable lectureId: Long): Success<Boolean> {
+        val result = studentService.checkLikedLecture(id, lectureId)
+        return Success(result, SuccessCode.LIKE_LECTURE)
+    }
+
     @PostMapping("/like/{lectureId}")
     fun likeLecture(@PathVariable lectureId: Long, @UserId userId: Long): Success<String> {
         studentService.likeLecture(lectureId, userId)
         return Success(SuccessCode.LIKE_LECTURE)
+    }
+
+    @DeleteMapping("/like/{lectureId}")
+    fun cancelLikeLecture(@PathVariable lectureId: Long, @UserId userId: Long): Success<String> {
+        studentService.cancelLikeLecture(lectureId, userId)
+        return Success(SuccessCode.CANCEL_LIKE_LECTURE)
     }
 
 }

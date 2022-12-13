@@ -13,6 +13,7 @@ enum class SuccessCode(
     USER_ONE("00004", "회원 상세입니다."),
 
     LOGIN("00005", "로그인이 완료되었습니다."),
+    UPDATE_PASSWORD("00100", "비밀변호 변경이 완료되었습니다."),
 
     SECESSION("00006", "탈퇴가 정상적으로 처리되었습니다."),
 
@@ -32,6 +33,7 @@ enum class SuccessCode(
     TAKING_LECTURE("11000", "수강 신청이 정상 처리 되었습니다."),
     TAKING_LECTURE_LIST("11001", "수강중인 강의 리스트입니다."),
     LIKE_LECTURE("11002", "강의에 좋아요를 눌렀습니다."),
+    CANCEL_LIKE_LECTURE("11005", "강의 좋아요를 취소했습니다."),
     LIKE_LECTURE_LIST("11003", "좋아요한 강의 리스트입니다."),
     TAKING_LECTURE_TAG("11004", "수강한 태그 리스트입니다."),
 

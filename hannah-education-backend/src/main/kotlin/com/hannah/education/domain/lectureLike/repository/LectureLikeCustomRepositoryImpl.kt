@@ -36,12 +36,38 @@ class LectureLikeCustomRepositoryImpl(
             .fetch()
     }
 
+    override fun checkLikedLectureByUser(user: User, lectureId: Long): Boolean {
+        return queryFactory
+            .selectFrom(lectureLike)
+            .where(
+                eqUser(user),
+                eqLectureId(lectureId),
+                notDelete()
+            )
+            .fetchOne()?.let { true } ?: false
+    }
+
+    override fun findLikeByAll(user: User, lecture: Lecture): LectureLike? {
+        return queryFactory
+            .selectFrom(lectureLike)
+            .where(
+                eqUser(user),
+                eqLecture(lecture),
+                notDelete()
+            )
+            .fetchOne()
+    }
+
     private fun eqLecture(findLecture: Lecture): BooleanExpression {
         return lecture.eq(findLecture)
     }
 
     private fun eqUser(findUser: User): BooleanExpression {
         return lectureLike.user.eq(findUser)
+    }
+
+    private fun eqLectureId(lectureId: Long): BooleanExpression {
+        return lectureLike.lecture.id.eq(lectureId)
     }
 
     private fun notDelete(): BooleanExpression {
