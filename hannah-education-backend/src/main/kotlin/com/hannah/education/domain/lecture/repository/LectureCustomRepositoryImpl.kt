@@ -83,6 +83,16 @@ class LectureCustomRepositoryImpl(
             .fetchOne()
     }
 
+    override fun findLectureById(lectureId: Long): Lecture? {
+        return queryFactory
+            .selectFrom(lecture)
+            .where(
+                eqId(lectureId),
+                notDelete()
+            )
+            .fetchOne()
+    }
+
     private fun eqId(id: Long): BooleanExpression {
         return lecture.id.eq(id)
     }

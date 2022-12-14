@@ -3,10 +3,6 @@ package com.hannah.education.domain.lectureClass
 import com.hannah.education.domain.lecture.Lecture
 import com.hannah.education.teacher.dto.request.ClassModifyRequest
 import com.hannah.education.util.domain.BaseEntity
-import com.hannah.education.util.domain.BooleanToYNConverter
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 import javax.persistence.*
 
 @Entity

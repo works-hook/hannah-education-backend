@@ -16,4 +16,6 @@ interface LectureCustomRepository {
     fun findAllByStudent(): List<Lecture>
     fun findCountByTeacher(user: User): Long?
 
+    fun findLectureById(lectureId: Long): Lecture?
+
 }

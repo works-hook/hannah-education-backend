@@ -9,6 +9,8 @@ import com.hannah.education.domain.lectureLike.repository.LectureLikeRepository
 import com.hannah.education.domain.lectureTag.repository.LectureTagRepository
 import com.hannah.education.domain.takingLecture.TakingLecture
 import com.hannah.education.domain.takingLecture.repository.TakingLectureRepository
+import com.hannah.education.domain.takingLectureClass.TakingLectureClass
+import com.hannah.education.domain.takingLectureClass.repository.TakingLectureClassRepository
 import com.hannah.education.domain.user.repository.UserRepository
 import com.hannah.education.student.dto.response.*
 import com.hannah.education.util.code.ErrorCode
@@ -22,7 +24,9 @@ class LectureService(
     private val lectureRepository: LectureRepository,
     private val lectureTagRepository: LectureTagRepository,
     private val lectureLikeRepository: LectureLikeRepository,
+    private val lectureClassRepository: LectureClassRepository,
     private val takingLectureRepository: TakingLectureRepository,
+    private val takingClassRepository: TakingLectureClassRepository,
 ) {
 
     fun mostTakenLectures(): List<LectureResponse> {
@@ -71,8 +75,15 @@ class LectureService(
             ?: throw BusinessException(ErrorCode.NOT_EXIST_LECTURE)
         val findUser = userRepository.findUserById(userId)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
-        val save = TakingLecture(user = findUser, lecture = findLecture)
-        takingLectureRepository.save(save)
+        val saveTakingLecture = TakingLecture(user = findUser, lecture = findLecture)
+        takingLectureRepository.save(saveTakingLecture)
+
+        val classesByLecture = lectureClassRepository.findClassAllByLecture(findLecture)
+        val saveTakingLectureClass = classesByLecture
+            .map {
+                TakingLectureClass(takingUser = findUser, lectureClass = it)
+            }.toList()
+        takingClassRepository.saveAll(saveTakingLectureClass)
     }
 
     fun checkLikedLecture(userId: Long, lectureId: Long): Boolean {
@@ -80,7 +91,6 @@ class LectureService(
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
         return lectureLikeRepository.checkLikedLectureByUser(findUser, lectureId)
     }
-
 
     @Transactional
     fun likeLecture(lectureId: Long, userId: Long) {

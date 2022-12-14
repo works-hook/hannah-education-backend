@@ -2,6 +2,7 @@ package com.hannah.education.student.service.myPage
 
 import com.hannah.education.domain.lecture.dto.LectureResponse
 import com.hannah.education.domain.lecture.dto.toLectureResponse
+import com.hannah.education.domain.lectureClass.repository.LectureClassRepository
 import com.hannah.education.domain.lectureLike.repository.LectureLikeRepository
 import com.hannah.education.domain.lectureNotice.repositoroy.LectureNoticeRepository
 import com.hannah.education.domain.lectureTag.repository.LectureTagRepository
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service
 class MyPageService(
     private val noticeRepository: LectureNoticeRepository,
     private val takingLectureRepository: TakingLectureRepository,
+    private val lectureClassRepository: LectureClassRepository,
     private val lectureTagRepository: LectureTagRepository,
     private val lectureLikeRepository: LectureLikeRepository,
     private val userRepository: UserRepository,
@@ -46,7 +48,9 @@ class MyPageService(
             .map {
                 val tags = lectureTagRepository.findTagByLecture(it.lecture)
                 val notices = noticeRepository.findNoticeAll(it.lecture)
-                it.toResponse(tags, notices)
+                val classCount = lectureClassRepository.findClassCountByLecture(it.lecture) ?: 0L
+                val doneClassCount = lectureClassRepository.findDoneClassCountByUser(findUser) ?: 0L
+                it.toResponse(tags, notices, classCount, doneClassCount)
             }.toList()
     }
 
