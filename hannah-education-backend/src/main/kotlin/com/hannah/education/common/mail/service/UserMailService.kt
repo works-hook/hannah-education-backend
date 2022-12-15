@@ -15,23 +15,15 @@ class UserMailService(
 ) {
 
     fun sendMail(email: String) {
-        val certificationNum: String = MailServiceUtils.certificationNum
-        val message = getMessage(email, MailServiceUtils.certificationNum)
-        redisUtils.setDataExpire(certificationNum, email)
+        val certificationNumber: String = MailServiceUtils.certificationNum
+        val message = getMailMessage(email, certificationNumber)
+        redisUtils.setDataExpire(certificationNumber, email)
         javaMailSender.send(message)
     }
 
     fun checkCertification(certificationNumber: String) {
         redisUtils.getData(certificationNumber)
             ?: throw MailSendException("인증번호가 잘못되었거나 인증 시간이 초과되었습니다. 다시 확인해주세요.");
-    }
-
-    private fun getMessage(email: String, certificationNumber: String): MimeMessage {
-        return try {
-            getMailMessage(email, certificationNumber)
-        } catch (e: Exception) {
-            throw MailSendException("관리자에게 문의해주세요.")
-        }
     }
 
     private fun getMailMessage(email: String, certificationNumber: String): MimeMessage {

@@ -25,4 +25,6 @@ enum class ErrorCode(
     NOT_IMAGE_FORMAT("50500", "지원하지 않은 파일 형식입니다."),
     IMAGE_UPLOAD_ERROR("50501", "이미지를 업로드하던 중 에러가 발생했습니다."),
     IMAGE_REMOVE_ERROR("50502", "이미지를 삭제하던 중 에러가 발생했습니다."),
+
+    ERROR_MAIL("50201", "인증번호가 잘못되었거나 인증 시간이 초과되었습니다. 다시 확인해주세요."),
 }
