@@ -19,6 +19,7 @@ data class UserCreateRequest(
             email = this.email,
             phoneNumber = this.phoneNumber,
             userType = this.userType,
+            imageUrl = "https://hannah-education.s3.ap-northeast-2.amazonaws.com/SETTING/20221215122719169default-profile.png"
         )
     }
 

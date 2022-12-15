@@ -19,12 +19,14 @@ class UserController(
     private val userService: UserService
 ) {
 
+    @NoToken
     @PostMapping("")
     fun createUser(@RequestBody request: UserCreateRequest): Success<UserCreateResponse> {
         val result = userService.createUser(request)
         return Success(result, SuccessCode.USER_REGISTER)
     }
 
+    @NoToken
     @PostMapping("/account")
     fun accountDuplicateCheck(@RequestBody request: UserDuplicateRequest): Success<String> {
         userService.accountDuplicateCheck(request)
