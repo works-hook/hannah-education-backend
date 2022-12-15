@@ -37,3 +37,5 @@ out/
 .vscode/
 
 src/main/resources/application-prod.properties
+src/main/resources/application-mail.properties
+src/main/resources/application-aws.properties

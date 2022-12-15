@@ -56,4 +56,8 @@ enum class SuccessCode(
     SUCCESS_DELETE_IMAGE("10202", "이미지 삭제가 완료되었습니다."),
 
     SUCCESS_CLASS_DONE("10300", "수업 수강이 완료되었습니다."),
+
+    SUCCESS_SEND_MAIL("20201", "인증 번호 메일이 전송되었습니다."),
+    SUCCESS_CHECK_MAIL("20202", "인증 번호 확인이 완료되었습니다."),
+
 }
