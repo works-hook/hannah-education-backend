@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: discovery-service
+  template:
+    metadata:
+      name: discovery-service-pod
+      labels:
+        app: discovery-service
+    spec:
+      containers:
+        - name: discovery-container
+          image: coals0329/discovery-service:latest
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8761 # does not affect actual port
+#      imagePullSecrets:           # for private registry
+#        - name: ghcr-turastory
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: discovery-service
+  ports:
+    - port: 1678
+      protocol: TCP
+
+
+
+
+
+
